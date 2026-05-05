@@ -1,0 +1,70 @@
+<div class="weather-card">
+  <div class="card-header">
+    <div class="city-info">
+      <h2 class="city-name">{{ weather.name }},  {{ countryName }}</h2>
+      <p class="description">{{ weather.weather[0].description | titlecase }}</p>
+    </div>
+    <img [src]="iconUrl" [alt]="weather.weather[0].description" class="weather-icon" />
+  </div>
+
+  <div class="local-time">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+  </svg>
+  Hora local: <strong>{{ localTime }}</strong>
+</div>
+
+  <div class="temp-main">
+    <span class="temp-value">{{ weather.main.temp | kelvinToCelsius:0 }}</span>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a6 6 0 0 1 6 6c0 4.5-6 12-6 12S6 12.5 6 8a6 6 0 0 1 6-6Z"/><circle cx="12" cy="8" r="2"/></svg>
+      <div>
+        <span class="stat-label">Sensación</span>
+        <span class="stat-value">{{ weather.main.feels_like | kelvinToCelsius:0 }}</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 0C9 11 5 13 5 17a7 7 0 0 0 14 0c0-4-4-6-7-9Z"/></svg>
+      <div>
+        <span class="stat-label">Humedad</span>
+        <span class="stat-value">{{ weather.main.humidity }}%</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/></svg>
+      <div>
+        <span class="stat-label">Viento</span>
+        <span class="stat-value">{{ windKmh }} km/h</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <div>
+        <span class="stat-label">Presión</span>
+        <span class="stat-value">{{ weather.main.pressure }} hPa</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1M12 20v1M4.22 4.22l.7.7M18.36 18.36l.7.7M3 12h1M20 12h1M4.22 19.78l.7-.7M18.36 5.64l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+      <div>
+        <span class="stat-label">Amanecer</span>
+        <span class="stat-value">{{ formatTime(weather.sys.sunrise) }}</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 18a5 5 0 0 0-10 0"/><line x1="12" y1="9" x2="12" y2="2"/><line x1="4.22" y1="10.22" x2="5.64" y2="11.64"/><line x1="1" y1="18" x2="3" y2="18"/><line x1="21" y1="18" x2="23" y2="18"/><line x1="18.36" y1="11.64" x2="19.78" y2="10.22"/></svg>
+      <div>
+        <span class="stat-label">Atardecer</span>
+        <span class="stat-value">{{ formatTime(weather.sys.sunset) }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="minmax">
+    <span>↑ {{ weather.main.temp_max | kelvinToCelsius:0 }}</span>
+    <span>↓ {{ weather.main.temp_min | kelvinToCelsius:0 }}</span>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="search-container">
+  <div class="search-input-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+    </svg>
+    <input
+      type="text"
+      class="search-input"
+      placeholder="Ej: Hermosillo, Mexico"
+      [(ngModel)]="query"
+      (input)="onInput()"
+      (keydown)="onKeyDown($event)"
+      (blur)="hideSuggestions()"
+      autocomplete="off"
+    />
+    <button class="search-btn" (click)="onSearch()">Buscar</button>
+  </div>
+
+  <div class="suggestions-dropdown" *ngIf="showSuggestions && suggestions.length > 0">
+    <button
+      class="suggestion-item"
+      *ngFor="let city of suggestions"
+      (mousedown)="selectCity(city)"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="loc-icon">
+        <path d="M20 10c0 6-8 13-8 13s-8-7-8-13a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span class="city-main">{{ city.name }}</span>
+      <span class="city-sub">{{ city.state ? city.state + ', ' : '' }}{{ city.country }}</span>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+<section class="forecast-section">
+  <h3 class="section-title">Pronóstico 5 días</h3>
+  <div class="forecast-grid">
+    <div class="forecast-card" *ngFor="let day of days">
+      <span class="day-name">{{ day.dayName }}</span>
+      <img [src]="iconUrl(day.icon)" [alt]="day.description" class="forecast-icon" />
+      <span class="forecast-desc">{{ day.description | titlecase }}</span>
+      <div class="forecast-temps">
+        <span class="temp-max">{{ day.tempMax | kelvinToCelsius:0 }}</span>
+        <span class="temp-min">{{ day.tempMin | kelvinToCelsius:0 }}</span>
+      </div>
+      <div class="forecast-humidity">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v6m0 0C9 11 5 13 5 17a7 7 0 0 0 14 0c0-4-4-6-7-9Z"/></svg>
+        {{ day.humidity }}%
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<div class="app-container">
+  <main class="main-content">
+    <div class="hero-section">
+      <h1 class="hero-title">¿Cómo está el clima<br>en tu destino?</h1>
+      <p class="hero-sub">Busca cualquier ciudad del mundo</p>
+      <app-search-bar
+        [recentSearches]="recentSearches"
+        (search)="onSearch($event)"
+        (searchByCoords)="onSearchByCoords($event)"
+      ></app-search-bar>
+      <app-recent-searches
+        [searches]="recentSearches"
+        (select)="onSearch($event)"
+        (remove)="removeRecent($event)"
+      ></app-recent-searches>
+    </div>
+
+    <div class="spinner-wrap" *ngIf="loading">
+      <div class="spinner"></div>
+      <p class="loading-text">Obteniendo datos del clima...</p>
+    </div>
+
+    <div class="error-card" *ngIf="error && !loading">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span>{{ error }}</span>
+    </div>
+
+    <div class="results-wrap" *ngIf="weather && forecast && !loading">
+      <app-weather-card [weather]="weather"></app-weather-card>
+      <app-forecast-grid [forecast]="forecast"></app-forecast-grid>
+    </div>
+
+    <div class="empty-state" *ngIf="!weather && !loading && !error">
+      <svg viewBox="0 0 120 80" fill="none" class="empty-svg">
+        <ellipse cx="60" cy="50" rx="40" ry="20" fill="currentColor" opacity="0.08"/>
+        <circle cx="40" cy="35" r="18" fill="currentColor" opacity="0.1"/>
+        <circle cx="65" cy="25" r="24" fill="currentColor" opacity="0.1"/>
+        <circle cx="88" cy="33" r="16" fill="currentColor" opacity="0.08"/>
+      </svg>
+      <p>Busca una ciudad para ver su clima</p>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <p>Byulklima · Datos por <a href="https://openweathermap.org" target="_blank">OpenWeatherMap</a></p>
+  </footer>
+</div>

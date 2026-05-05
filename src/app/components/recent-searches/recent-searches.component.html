@@ -1,0 +1,12 @@
+<div class="recent-wrap" *ngIf="searches.length > 0">
+  <span class="recent-label">Recientes</span>
+  <div class="recent-chips">
+    <div class="chip" *ngFor="let city of searches">
+      <button class="chip-name" (click)="select.emit(city)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a6 6 0 0 1 6 6c0 4.5-6 12-6 12S6 12.5 6 8a6 6 0 0 1 6-6Z"/><circle cx="12" cy="8" r="2"/></svg>
+        {{ city }}
+      </button>
+      <button class="chip-remove" (click)="remove.emit(city)" title="Eliminar">×</button>
+    </div>
+  </div>
+</div>

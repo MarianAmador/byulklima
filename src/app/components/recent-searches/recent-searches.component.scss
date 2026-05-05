@@ -1,0 +1,65 @@
+.recent-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .recent-label {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .recent-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  background: var(--bg-card);
+  border: 1.5px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+
+  &:hover { border-color: var(--border-hover); }
+
+  .chip-name {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 12px 8px 16px;
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.15s;
+    &:hover { color: var(--accent-blue); }
+    svg { width: 14px; height: 14px; color: var(--accent-blue); }
+  }
+
+  .chip-remove {
+    padding: 8px 14px 8px 4px;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: color 0.15s;
+    &:hover { color: #c62828; }
+  }
+}

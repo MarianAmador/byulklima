@@ -1,0 +1,108 @@
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  max-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3.5rem 2.5rem 4rem;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  .hero-title {
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    font-weight: 800;
+    line-height: 1.15;
+    background: linear-gradient(135deg, var(--accent-blue), var(--c-teal-600), var(--accent-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0.6rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-sub {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: 500;
+  }
+}
+
+.spinner-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 3rem 0;
+  .spinner {
+    width: 52px;
+    height: 52px;
+    border: 3px solid var(--border);
+    border-top-color: var(--accent-blue);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+  }
+  .loading-text { color: var(--text-muted); font-size: 1rem; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.error-card {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error-text);
+  padding: 1.1rem 1.5rem;
+  border-radius: 16px;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 1rem 0;
+  animation: fadeIn 0.3s ease;
+  svg { width: 22px; height: 22px; flex-shrink: 0; }
+}
+
+.results-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  animation: fadeIn 0.4s ease;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 5rem 0;
+  color: var(--text-muted);
+  .empty-svg { width: 140px; height: 100px; color: var(--text-muted); }
+  p { font-size: 1.05rem; }
+}
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 768px) {
+  .main-content { padding: 2rem 1.5rem 3rem; }
+  .hero-section { margin-bottom: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .main-content { padding: 1.5rem 1rem 2rem; }
+}
