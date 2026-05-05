@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
   loading = false;
   error = '';
   recentSearches: string[] = [];
+  cityLabel = '';
 
   constructor(private weatherService: WeatherService) {}
 
@@ -32,6 +33,12 @@ export class AppComponent implements OnInit {
     this.error = '';
     this.weather = null;
     this.forecast = null;
+    this.cityLabel = event.label;
+
+    const parts = event.label.split(', ');
+    const recentLabel = parts.length >= 3
+      ? parts[0] + ', ' + parts[parts.length - 1]
+      : event.label;
 
     forkJoin({
       weather: this.weatherService.getCurrentWeatherByCoords(event.lat, event.lon),
@@ -41,7 +48,7 @@ export class AppComponent implements OnInit {
         this.weather = weather;
         this.forecast = forecast;
         this.loading = false;
-        this.weatherService.addRecentSearch(event.label);
+        this.weatherService.addRecentSearch(recentLabel);
         this.recentSearches = this.weatherService.getRecentSearches();
       },
       error: (msg: string) => {
@@ -56,6 +63,7 @@ export class AppComponent implements OnInit {
     this.error = '';
     this.weather = null;
     this.forecast = null;
+    this.cityLabel = '';
 
     forkJoin({
       weather: this.weatherService.getCurrentWeather(city),

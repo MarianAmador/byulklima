@@ -12,6 +12,7 @@ import { KelvinToCelsiusPipe } from '../../pipes/kelvin-to-celsius.pipe';
 })
 export class WeatherCardComponent implements OnInit, OnDestroy {
   @Input() weather!: WeatherData;
+  @Input() cityLabel = '';
 
   localTime = '';
   private timer: any;

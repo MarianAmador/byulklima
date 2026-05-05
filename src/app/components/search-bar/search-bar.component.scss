@@ -21,8 +21,8 @@
   }
 
   .search-icon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     color: var(--text-muted);
     flex-shrink: 0;
   }
@@ -34,7 +34,7 @@
   background: transparent;
   outline: none;
   font-family: 'Quicksand', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   font-weight: 500;
   color: var(--text-primary);
   padding: 20px 0;
@@ -46,9 +46,9 @@
   color: white;
   border: none;
   border-radius: 14px;
-  padding: 14px 32px;
+  padding: 13px 28px;
   font-family: 'Quicksand', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
   transition: opacity 0.2s, transform 0.15s;
@@ -76,7 +76,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 15px 20px;
+  padding: 14px 20px;
   background: none;
   border: none;
   color: var(--text-primary);
@@ -87,29 +87,29 @@
   text-align: left;
   transition: background 0.15s;
   border-bottom: 1px solid var(--border);
+
   &:last-child { border-bottom: none; }
-  &:hover { background: var(--bg-primary); color: var(--accent-blue); }
-  .loc-icon { width: 16px; height: 16px; color: var(--accent-blue); flex-shrink: 0; }
-}
 
-@keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
-
-@media (max-width: 480px) {
-  .search-btn { padding: 14px 20px; font-size: 0.95rem; }
-  .search-input { font-size: 1rem; padding: 18px 0; }
-}
-.suggestion-item {
-  justify-content: flex-start;
-  gap: 10px;
-
-  .city-main {
-    font-weight: 600;
-    color: var(--text-primary);
+  &:hover, &.active {
+    background: var(--bg-primary);
+    color: var(--accent-blue);
+    .city-sub { color: var(--accent-blue); opacity: 0.7; }
   }
+
+  .loc-icon { width: 16px; height: 16px; color: var(--accent-blue); flex-shrink: 0; }
+
+  .city-main { font-weight: 600; }
 
   .city-sub {
     font-size: 0.85rem;
     color: var(--text-muted);
     margin-left: auto;
   }
+}
+
+@keyframes dropIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+@media (max-width: 480px) {
+  .search-btn { padding: 13px 18px; font-size: 0.9rem; }
+  .search-input { font-size: 1rem; padding: 16px 0; }
 }

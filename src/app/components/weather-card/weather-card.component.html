@@ -1,18 +1,18 @@
 <div class="weather-card">
   <div class="card-header">
     <div class="city-info">
-      <h2 class="city-name">{{ weather.name }},  {{ countryName }}</h2>
+      <h2 class="city-name">{{ cityLabel || weather.name + ', ' + countryName }}</h2>
       <p class="description">{{ weather.weather[0].description | titlecase }}</p>
     </div>
     <img [src]="iconUrl" [alt]="weather.weather[0].description" class="weather-icon" />
   </div>
 
   <div class="local-time">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
-  </svg>
-  Hora local: <strong>{{ localTime }}</strong>
-</div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+    </svg>
+    Hora local: <strong>{{ localTime }}</strong>
+  </div>
 
   <div class="temp-main">
     <span class="temp-value">{{ weather.main.temp | kelvinToCelsius:0 }}</span>

@@ -28,6 +28,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
   query = '';
   showSuggestions = false;
   suggestions: CitySuggestion[] = [];
+  selectedIndex = -1;
   private inputSubject = new Subject<string>();
   private sub!: Subscription;
 
@@ -53,6 +54,7 @@ export class SearchBarComponent implements OnInit, OnDestroy {
         lat: r.lat,
         lon: r.lon
       }));
+      this.selectedIndex = -1;
       this.showSuggestions = this.suggestions.length > 0;
     });
   }
@@ -65,19 +67,49 @@ export class SearchBarComponent implements OnInit, OnDestroy {
     if (this.query.trim()) {
       this.search.emit(this.query.trim());
       this.showSuggestions = false;
+      this.selectedIndex = -1;
     }
   }
 
-  onKeyDown(e: KeyboardEvent) { if (e.key === 'Enter') this.onSearch(); }
+  onKeyDown(e: KeyboardEvent) {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      this.selectedIndex = Math.min(this.selectedIndex + 1, this.suggestions.length - 1);
+      return;
+    }
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      this.selectedIndex = Math.max(this.selectedIndex - 1, -1);
+      return;
+    }
+    if (e.key === 'Enter') {
+      if (this.selectedIndex >= 0 && this.suggestions[this.selectedIndex]) {
+        this.selectCity(this.suggestions[this.selectedIndex]);
+      } else {
+        this.onSearch();
+      }
+      return;
+    }
+    if (e.key === 'Escape') {
+      this.showSuggestions = false;
+      this.selectedIndex = -1;
+    }
+  }
 
   selectCity(city: CitySuggestion) {
     const label = city.name + ', ' + (city.state ? city.state + ', ' : '') + city.country;
     this.query = label;
     this.showSuggestions = false;
+    this.selectedIndex = -1;
     this.searchByCoords.emit({ lat: city.lat, lon: city.lon, label });
   }
 
-  hideSuggestions() { setTimeout(() => this.showSuggestions = false, 150); }
+  hideSuggestions() {
+    setTimeout(() => {
+      this.showSuggestions = false;
+      this.selectedIndex = -1;
+    }, 150);
+  }
 
   private getCountryName(code: string): string {
     try {

@@ -28,7 +28,7 @@
     </div>
 
     <div class="results-wrap" *ngIf="weather && forecast && !loading">
-      <app-weather-card [weather]="weather"></app-weather-card>
+      <app-weather-card [weather]="weather" [cityLabel]="cityLabel"></app-weather-card>
       <app-forecast-grid [forecast]="forecast"></app-forecast-grid>
     </div>
 

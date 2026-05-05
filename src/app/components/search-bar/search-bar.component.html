@@ -19,7 +19,8 @@
   <div class="suggestions-dropdown" *ngIf="showSuggestions && suggestions.length > 0">
     <button
       class="suggestion-item"
-      *ngFor="let city of suggestions"
+      [class.active]="i === selectedIndex"
+      *ngFor="let city of suggestions; let i = index"
       (mousedown)="selectCity(city)"
     >
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="loc-icon">
